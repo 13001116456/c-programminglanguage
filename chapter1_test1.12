@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#define INWORD 1
+#define OUTWORD 0
+
+/*传统if-else方式设置单词换行----------------------c-programming1.12---------------------------------------*/
+void word_newline()
+{
+	char ch;
+	while((ch = getchar()) != EOF && ch != '\n')
+	{
+		if(ch == ' ' || ch == '\t' || ch == '\n')
+		{
+			printf("\n");
+		}
+		else
+			putchar(ch);
+	}
+}
+/*传统标记flag方式设置单词换行*/
+void word_newline_flag()
+{
+	char ch;
+	int flag = OUTWORD;
+	while((ch = getchar()) != EOF && ch != '\n')
+	{
+		if(ch == ' ' || ch == '\t' || ch == '\n')
+		{
+			flag = OUTWORD;
+		}
+		else
+			flag = INWORD;
+		if(flag)
+			putchar(ch);
+		else
+			printf("\n");
+	}
+}
+/*传统标记flag方式2设置单词换行*/
+void word_newline_flag2()
+{
+	char ch;
+	int flag = OUTWORD;
+	while((ch = getchar()) != EOF && ch != '\n')
+	{
+		if(ch == ' ' || ch == '\t' || ch == '\n')
+		{
+			if(flag = INWORD)
+			{
+				printf("\n");
+				flag = OUTWORD;
+			}
+		}
+		else if(flag = OUTWORD)
+		{
+			flag = INWORD;
+			putchar(ch);
+		}
+		else
+			putchar(ch);
+	}
+}
+/*设置单词换行题目结束-------------------------------------------------------------*/
