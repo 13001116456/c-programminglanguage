@@ -16,3 +16,16 @@ void f_trans_c()
 	}
 
 }
+
+void f_trans_c_for()  //采取for循环方式
+{
+	float c,f;
+	int step = 20;
+	puts("       f trans to c using for");
+	for(c = 300;c >=0 ;c -= 20)
+	{
+		f = (9.0 / 5 ) * c + 32;
+		printf("%4.0f\t%6.2f\n",c,f);
+		//printf("%4.0f\t%6.2f\n",c,(9.0 / 5 ) * c + 32);    //采取不定义f的方式，直接采取该方式书写。
+	}
+}
