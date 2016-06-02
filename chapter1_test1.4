@@ -1,0 +1,18 @@
+#include "stdafx.h"
+#include <stdio.h>
+
+/*设置温度转华氏温度*/
+void f_trans_c()
+{
+	float c,f;  //c摄氏温度,f华氏温度
+	int step = 20;
+	puts("       f trans to c");  //设置主题
+	c = 0;
+	while(c <= 180)
+	{
+		f = (9.0 / 5 ) * c + 32;
+		printf("%4.0f\t%6.2f\n",c,f);
+		c += step;
+	}
+
+}
