@@ -1,0 +1,64 @@
+/*--------计算某一行输入最大长度--------------------------page 29-----------------------------*/
+
+#include <stdio.h>
+#include <string.h>
+
+#define LIM_LEN 30
+
+//复制数组函数----------->strcpy可以代替
+void copy(char last[],char first[])
+{
+	int i = 0;
+	while((last[i] = first[i]) != '\0')
+	{
+		i++;
+	}
+}
+
+
+//输入行获取数组并且返回数组长度
+int var_arr_len(char arr[],int lim)
+{
+	char ch;
+	int i;
+	for(i = 0;i < lim-1 && (ch = getchar()) != EOF && ch !='\n';i++)
+	{
+		arr[i] = ch;
+	}
+	if(ch == '\n')
+	{
+		arr[i] = ch;
+		i++;
+	}
+	arr[i] = '\0';
+	return i;
+}
+
+
+//输入你需要计算的输入行数，输出结果是最大长度的行和最大化长度行的字符数，包含结束的换行符\n
+void longest_arr(int input_lines)
+{
+	int len;
+	int i = 0;
+	int longest = 0;
+	char line[LIM_LEN];
+	char longest_arr[LIM_LEN];
+	for(i;i < input_lines; i++)
+	{
+		while((len = var_arr_len(line,LIM_LEN)) > 0)
+		{
+			break;
+		}
+		if(len > longest)
+		{
+			longest = len;
+			copy(longest_arr,line); 
+			//strcpy_s(longest_arr,LIM_LEN,line);  //这种copy方式更好，是string.h中自带的函数
+		}
+	}
+	puts(longest_arr);
+	printf("the longest is %d.",longest);
+	
+}
+
+/*----------计算多行输入，并求出最长行字符串并打印该最长输入长度-----------over-------------------------*/
