@@ -35,8 +35,10 @@ char * reserve_arr(char  *arr,int len)
 		rindex ++;
 	}
 	reser_arr[rindex] = '\0';    //不添加出现了乱码问题，无法结束
-	//copy(arr,reser_arr);
-	strcpy_s(arr,LIM_LEN-1,reser_arr);   //由于arrs是不限长度所以容易内存溢出错误
+	copy(arr,reser_arr);
+	/*---------该string.h库中的复制函数对于任何的数据格式的复制变得可能，当然也可以自己造轮子嘛------------*/
+	//memmove(arr,reser_arr,len * sizeof(char)); 
+	//strcpy_s(arr,LIM_LEN-1,reser_arr);   //由于arrs是不限长度所以容易内存溢出错误
 	return arr;
 }
 
