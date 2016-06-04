@@ -1,0 +1,50 @@
+/*-------颠倒字符串的输入输出顺序------------------c-programming1-19----------------------*/
+#include <stdio.h>
+#include <string.h>
+
+#define LIM_LEN 30
+/*-------内部使用了颠倒顺序的方法---------------------*/
+void reserve()
+{
+	int index,rindex;
+	char arr[] = "sun xiao hui";
+	char reser_arr[LIM_LEN];
+	index = strlen(arr) - 1;
+	rindex = 0;
+	for(index; index >= 0 ;index --)
+	{
+		reser_arr[rindex] = arr[index];
+		rindex ++;
+	}
+	reser_arr[rindex] = '\0';    //不添加出现了乱码问题，无法结束
+	copy(arr,reser_arr);
+	puts(reser_arr);
+	puts(arr);
+	
+}
+/*-------构造函数接口方式，颠倒字符串输入输出顺序的方法---------------------*/
+char * reserve_arr(char  *arr,int len)
+{
+	int index,rindex;
+	char reser_arr[LIM_LEN];
+	index = len - 1;    //notice:使用strlen()方法的时候能返回长度-1才是索引值。
+	rindex = 0;
+	for(index; index >= 0 ;index --)
+	{
+		reser_arr[rindex] = arr[index];
+		rindex ++;
+	}
+	reser_arr[rindex] = '\0';    //不添加出现了乱码问题，无法结束
+	//copy(arr,reser_arr);
+	strcpy_s(arr,LIM_LEN-1,reser_arr);   //由于arrs是不限长度所以容易内存溢出错误
+	return arr;
+}
+
+//驱动测试程序
+void reserve_self_drive()
+{
+	char arrs[LIM_LEN] = "sun xiao hui";
+	reserve_arr(arrs,strlen(arrs));
+	puts(arrs);
+}
+/*-------颠倒字符串的输入输顺序出-----------------------over-------------------------*/
