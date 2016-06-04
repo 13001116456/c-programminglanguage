@@ -3,6 +3,16 @@
 #include <string.h>
 
 #define LIM_LEN 30
+
+//复制数组函数----------->strcpy,memmove()都可以代替
+void copy(char last[],char first[])
+{
+	int i = 0;
+	while((last[i] = first[i]) != '\0')
+	{
+		i++;
+	}
+}
 /*-------内部使用了颠倒顺序的方法---------------------*/
 void reserve()
 {
