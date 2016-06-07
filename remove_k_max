@@ -18,7 +18,7 @@ void find_k_max()
 {
 	unsigned int num = 346536428;   //不可以超过p32-1.否则乱码
 	int i = bit_num(num);
-	int j,k,l;
+	int j,k,l;   //k需要删除位，l需要删除的那个数字
 	int g_nums[LIM_LEN];
 	for(j = i-1;j >=0;j--)
 	{
