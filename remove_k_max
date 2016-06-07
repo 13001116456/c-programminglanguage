@@ -1,0 +1,47 @@
+/*-----一个多位数删除掉其中的一位k，使该数在少一位情况下最大----------remove_k_max----------------*/
+
+//疑问是：超过int型范围，表示只能是字符串形式
+
+/*-----返回某数的位数---------*/
+int bit_num(int num)
+{
+	int i = 0;
+	while(num > 0)
+	{
+		num /= 10;
+		i++;
+	}
+	return i;
+}
+/*-----找到需要删掉的那位---------*/
+void find_k_max()
+{
+	unsigned int num = 346536428;   //不可以超过p32-1.否则乱码
+	int i = bit_num(num);
+	int j,k,l;
+	int g_nums[LIM_LEN];
+	for(j = i-1;j >=0;j--)
+	{
+		g_nums[j] = num % 10;   //将按数字顺序放入数组
+		num /= 10;
+		//printf("%d\n",g_nums[j]);
+	}
+	for( k = 1;k < i;k++)
+	{
+		if (g_nums[0] < g_nums[1])  //如果第一位小于第二位直接结束，去掉第一位
+		{
+			l = g_nums[0];
+			k = 0;
+			break;
+			//printf("%d %d\n",l,num);
+		}
+		else if(g_nums[k] < g_nums[k+1])  //不满足上述情况就依次循环判断找出需要删掉的位，先比较高位因为高位权值大
+		{
+			l = g_nums[k];  //自带k值，所以不需要赋值
+			break;
+			
+		}
+	}
+	printf("%d %d\n",k,l);
+}
+/*-----一个多位数删除掉其中的一位k，使该数在少一位情况下最大----------over----------------*/
