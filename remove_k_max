@@ -26,16 +26,9 @@ void find_k_max()
 		num /= 10;
 		//printf("%d\n",g_nums[j]);
 	}
-	for( k = 1;k < i;k++)
+	for( k = 0;k < i;k++)
 	{
-		if (g_nums[0] < g_nums[1])  //如果第一位小于第二位直接结束，去掉第一位
-		{
-			l = g_nums[0];
-			k = 0;
-			break;
-			//printf("%d %d\n",l,num);
-		}
-		else if(g_nums[k] < g_nums[k+1])  //不满足上述情况就依次循环判断找出需要删掉的位，先比较高位因为高位权值大
+		if(g_nums[k] < g_nums[k+1])  //不满足上述情况就依次循环判断找出需要删掉的位，先比较高位因为高位权值大
 		{
 			l = g_nums[k];  //自带k值，所以不需要赋值
 			break;
