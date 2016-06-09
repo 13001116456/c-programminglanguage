@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+
+/*-----十六进制字符串转化为十进制-------chapter2_2.3---------------*/
+
+/*-------首先定义一个返回值为int型的幂函数pow1-------*/
+int pow1(int m,int n)
+{
+	int i;
+	int x = 1;
+	for(i = 0;i < n;i++)
+	{
+		x *= m;
+	}
+	return x;
+}
+
+/*-------首先定义一个返回值将十六进制转化为int型的函数htoi-------*/
+int htoi(char s[])
+{
+	int n,m,i;
+	int count = 0;
+	int mzs = 0;  //控制幂函数的指数
+	char c;
+	int ch[LIM_LEN];
+	enum mark {NO,YES};   //定义标记符号
+	enum mark flag;
+	
+	i = 0;
+	n = strlen(s);   //字符串的长度，属于string.h头文件库中
+	//printf("n=%d\n",n);
+	if(s[i] == '0')  //除去字符串中的0X或者0x
+	{
+		i++;
+		if(s[i] == 'x' || s[i] == 'X')
+		{
+			i++;
+		}
+	}
+	//printf("i=%d\n",i);
+	//printf("%d\n",i);
+	flag = YES;
+	//printf("%d\n",YES);
+	for(i,m = 0;i < n && flag == YES;i++)   //将字符串转化为相应的十六进制数字并放入一个int数组中
+	{
+		c = s[i];
+		if(isdigit(c))
+		{
+			ch[m] = s[i] - '0';
+		}
+		else if(c >= 'a' && c <= 'f')
+		{
+			ch[m] = s[i] - 'a' + 10;
+		}
+		else if(c >= 'A' && c <= 'F')
+		{
+			ch[m] = s[i] - 'A' + 10;
+		}
+		else
+		{
+			atexit(bad_exit);   //参数为函数指针，虽然在内部定义但是还需要在文件中函数声明，要不就是错误
+			exit(EXIT_FAILURE);   //参数EXIT_FAILURE和EXIT_SUCCESS
+			//puts("the input isn't 0-9 or a-f!");     //打印但是会计算一个溢出错误值，上述方法可避免
+		}
+		m++;
+	}
+	//printf("i=%d\n",i);
+	//printf("m=%d\n",m);
+	m = m-1;   //m多计数一次，需要退回一次--------------->每次一定考虑是否多计数！！！
+	for(m;m >= 0;m--)   //累加来求出int型的值
+	{
+		count += ch[m] * pow1(16,mzs);
+		mzs++;
+	}
+	return count;
+}
+
+/*-------错误退出注册函数给atexit()使用-------*/
+void bad_exit(void)
+{
+	puts("the input isn't 0-9 or a-f!");
+}
+/*-------首先定义一个返回值将十六进制转化为int型的函数htoi的驱动函数-------*/
+void htoi_test()
+{
+	int count;
+	char n_nums[] = "0X12a";   //298
+	count = htoi(n_nums);
+	printf("%d\n",count);
+}
+/*-----十六进制字符串转化为十进制-------chapter2_2.3------over---------*/
