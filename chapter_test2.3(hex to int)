@@ -62,6 +62,7 @@ int htoi(char s[])
 		}
 		else
 		{
+			flag = NO;
 			atexit(bad_exit);   //参数为函数指针，虽然在内部定义但是还需要在文件中函数声明，要不就是错误
 			exit(EXIT_FAILURE);   //参数EXIT_FAILURE和EXIT_SUCCESS
 			//puts("the input isn't 0-9 or a-f!");     //打印但是会计算一个溢出错误值，上述方法可避免
