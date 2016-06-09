@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define LIM_LEN 30
+void bad_exit(void);
 /*-----十六进制字符串转化为十进制-------chapter2_2.3---------------*/
 
 /*-------首先定义一个返回值为int型的幂函数pow1-------*/
